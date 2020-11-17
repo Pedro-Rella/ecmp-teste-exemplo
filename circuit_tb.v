@@ -6,8 +6,7 @@ module circuit_tb;
    `CLOCK(clk, 10)
    `RESET(rst, 1, 10)
    `SIGNAL(en, 1)
-   `SIGNAL(x, 32)
-   `SIGNAL_OUT(y, 32)
+   `SIGNAL_OUT(y, 64)
 
    integer i;
    
@@ -16,8 +15,7 @@ module circuit_tb;
       $dumpvars();
       en=0;
       for (i=0; i<100; i=i+1) begin
-         @(posedge clk) #1 x=i; en=1;
-         @(posedge clk) #1 en=0;
+         @(posedge clk) #1 en=1;
       end
 
       @(posedge clk) #100 $finish;
@@ -29,7 +27,6 @@ module circuit_tb;
       .rst(rst),
       .clk(clk),
       .en(en),
-      .x(x),
       .y(y)
       );
 
